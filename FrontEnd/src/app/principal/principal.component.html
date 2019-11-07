@@ -14,7 +14,7 @@
       <mat-card-actions class="button">
         <button mat-raised-button color="primary" routerLink="/comentario/{{post.id}}">Ler mais</button>
         <div class="button-end">
-          <button (click)="openDialog($event, post.id)" color="warm" mat-icon-button>
+          <button routerLink="/editar/{{post.id}}" color="warm" mat-icon-button>
             <mat-icon>edit</mat-icon>
           </button>
           <button (click)="deletePost($event, post.id)" color="warm" mat-icon-button>

@@ -62,7 +62,7 @@ export class ApiService {
   }
 
   getPost(id: number): Observable<Post> {
-    return this.http.get<Post>(apiPost).pipe(
+    return this.http.get<Post>(`http://localhost:3333/api/post/${id}`).pipe(
       tap(_ => console.log(`leu o post id=${id}`)),
       catchError(this.handleError<Post>(`getPost id=${id}`))
     );
@@ -77,7 +77,7 @@ export class ApiService {
   }
 
   updatePost(id, Post): Observable<any> {
-    return this.http.put(apiPost, Post, httpOptions).pipe(
+    return this.http.put(`http://localhost:3333/api/post/${id}`, Post, httpOptions).pipe(
       tap(_ => console.log(`atualiza o post com id=${id}`)),
       catchError(this.handleError<any>('updatePost'))
     );
@@ -91,8 +91,8 @@ export class ApiService {
   };
 
 
-  getComentarios (): Observable<Comentario[]> {
-    return this.http.get<Comentario[]>(apiComentarios)
+  getComentarios(post_id): Observable<Comentario[]> {
+    return this.http.get<Comentario[]>(`http://localhost:3333/api/comentarios/${post_id}`)
       .pipe(
         tap(usuarios => console.log('leu os posts')),
         catchError(this.handleError('getPosts', []))
@@ -108,22 +108,15 @@ export class ApiService {
   }
 
   addComentario(Comentario): Observable<Comentario> {
-    return this.http.post<Comentario>(apiNovoComentario, Comentario, httpOptions).pipe(
+    return this.http.post<Comentario>(`http://localhost:3333/api/comentarios`, Comentario, httpOptions).pipe(
       // tslint:disable-next-line:no-shadowed-variable
       tap((comentario: Comentario) => console.log(`adicionou o Comentario com w/ id=${Comentario.id}`)),
       catchError(this.handleError<Comentario>('addComentario'))
     );
   }
 
-  updateComentario(id, comentario): Observable<any> {
-   return this.http.put(`http://localhost:3333/api/comment/${id}`, comentario, httpOptions).pipe(
-      tap(_ => console.log(`atualiza o Comentario com id=${id}`)),
-      catchError(this.handleError<any>('updateComentario'))
-    );
-  }
-
   deleteComentario (id): Observable<Comentario> {
-   return this.http.delete<Comentario>(apiComentario, httpOptions).pipe(
+   return this.http.delete<Comentario>(`http://localhost:3333/api/comentario/${id}`, httpOptions).pipe(
       tap(_ => console.log(`remove o Comentario com id=${id}`)),
       catchError(this.handleError<Comentario>('deletePost'))
     );

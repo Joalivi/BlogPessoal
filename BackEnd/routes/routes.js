@@ -20,16 +20,16 @@ module.exports = function(app) {
       .get(todoList.list_all_adm_users)
       .post(todoList.create_a_user);
 
-  app.route('/api/comentarios/:id')
+  app.route('/api/comentario/:post_id')
       .get(todoList.read_a_comment)
-      .put(todoList.update_a_comment)
       .delete(todoList.delete_a_comment);
-
-  app.route('/api/comentarios')
-      .post(todoList.create_a_comment);
 
   app.route('/api/comentarios/:post_id')
       .get(todoList.list_all_comments);
+
+  app.route('/api/comentarios')
+      .get(todoList.list_all_comments)
+      .post(todoList.create_a_comment);   
 
   app.route('/api/novousuario')
       .post(todoList.create_a_user);

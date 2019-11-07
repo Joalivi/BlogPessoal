@@ -2,28 +2,20 @@
     <mat-card class="item-card" *ngFor="let post of dataSource">
       <mat-card-header>
         <mat-card-title>{{post.title}}</mat-card-title>
-        <mat-card-subtitle> {{post.username}} em {{post.createdAt}} </mat-card-subtitle>
+        <mat-card-subtitle> {{post.username}} em {{post.date}} </mat-card-subtitle>
       </mat-card-header>
-      <img mat-card-image src="https://picsum.photos/id/10{{post.id}}/300/200">
+      <img mat-card-image src="https://picsum.photos/id/10{{post_id}}/300/200">
       <mat-card-content>
         <p>
           {{post.body}}
         </p>
       </mat-card-content>
     </mat-card>
-    <mat-list>
-      <mat-list-item *ngFor="let message of messages">
-        <h3 matLine> {{message.from}} </h3>
-        <p matLine>
-          <span class="demo-2"> -- {{message.content}} </span>
-        </p>
-      </mat-list-item>
-    </mat-list>
   </div>
   
   <div class="comment-container">
     <mat-card class="item-card">
-      <form [formGroup]="commentForm" (ngSubmit)="addComment(commentForm.value)">
+      <form [formGroup]="commentForm" (ngSubmit)="addComentario(commentForm.value)">
         <mat-card-content>
           <mat-form-field class="email">
             <input matInput name="email" placeholder="Email" formControlName="email">
@@ -42,23 +34,21 @@
         </mat-card-actions>
       </form>
     </mat-card>
-  
+  </div>
+  <div class="comment-container">
     <mat-card class="item-card" *ngFor="let comment of commentSource; let i = index">
       <mat-card-header>
-        <img mat-card-avatar src="https://picsum.photos/id/10{{post.id}}/300/200">
         <mat-card-title>{{comment.email}}</mat-card-title>
-        <mat-card-subtitle>Postado em {{comment.createdAt}}</mat-card-subtitle>
+        <mat-card-subtitle>Postado em {{comment.date}}</mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
-        <span class="mat-h3"> {{comment.title}} </span>
+        
+        <span class="mat-h2">{{comment.title}} </span>
         <p>
           {{comment.body}}
         </p>
       </mat-card-content>
       <mat-card-actions class="btnActions">
-        <button (click)="openDialog($event, comment.id)" color="accent" mat-icon-button>
-          <mat-icon>edit</mat-icon>
-        </button>
         <button (click)="deleteComment($event, comment.id)" color="warn" mat-icon-button>
           <mat-icon>delete</mat-icon>
         </button>

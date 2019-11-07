@@ -105,16 +105,9 @@ exports.read_a_comment = function (req, res) {
     });
 };
 
-exports.update_a_comment = function (req, res) {
-    Comment.updateById(req.params.id, new Comment(req.body), function (err, post) {
-        if (err)
-            res.send(err);
-        res.json(post);
-    });
-}
-
 exports.delete_a_comment = function (req, res) {
-    Comment.remove(req.params.id, function (err, post) {
+   
+    Comment.delete(req.params.post_id, function (err, post) {
         if (err)
             res.send(err);
         res.json({

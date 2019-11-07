@@ -25,7 +25,7 @@ Comment.createComment = function (newComment, result) {
 };
 
 Comment.getAllComments = function (postId, result) {
-    sql.query("SELECT c.id, c.post_id, c.title, c.body, c.email, DATE_FORMAT(c.createdAt, '%d/%m/%Y às %H:%i') AS createdAt FROM comment c INNER JOIN post p ON c.post_id = p.id WHERE p.id = ? ORDER BY c.createdAt", postId, function (err, res) {
+    sql.query("SELECT c.id, c.post_id, c.title, c.body, c.email, DATE_FORMAT(c.date, '%d/%m/%Y às %H:%i') AS date FROM comment c INNER JOIN post p ON c.post_id = p.id WHERE p.id = ? ORDER BY c.date", postId, function (err, res) {
         if (err) {
             console.log("error: ", err);
             result(null, err);
@@ -46,18 +46,7 @@ Comment.getCommentById = function (commentId, result) {
     });
 };
 
-Comment.updateById = function (commentId, post, result) {
-    sql.query("UPDATE comment SET title = ?, body = ?, email = ? WHERE id = ?", [post.title, post.body, post.email, commentId], function (err, res) {
-        if (err) {
-            console.log("error: ", err);
-            result(null, err);
-        } else {
-            result(null, res);
-        }
-    });
-}
-
-Comment.remove = function (commentId, result) {
+Comment.delete = function (commentId, result) {
     sql.query("DELETE FROM comment WHERE id = ?", commentId, function (err, res) {
         if (err) {
             console.log("error: ", err);
