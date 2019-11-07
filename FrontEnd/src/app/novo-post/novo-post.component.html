@@ -1,0 +1,37 @@
+<div>
+  <h3>Adicionar Novo Post</h3>
+</div>
+
+<form class="example-container" [formGroup]="postForm" (ngSubmit)="addPost(postForm.value)">
+        <mat-form-field>
+          <input id="title" matInput name="title" placeholder="Nome do Post" formControlName="title">
+        </mat-form-field>
+        <mat-form-field class="users">
+          <mat-select placeholder="Usuário" name="userId" formControlName="userId">
+            <mat-option *ngFor="let user of dataSource" [value]="user.id">
+              {{user.username}}
+             </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+          <mat-form-field class="body">
+            <textarea cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="5" cdkAutosizeMaxRows="10"
+              matInput name="body" placeholder="Conteúdo do Post" formControlName="body"></textarea>
+          </mat-form-field>
+        
+        <div class="example-button-row">
+          <button type="submit" [disabled]="!postForm.valid" mat-raised-button
+          color="primary">Enviar</button>
+          <button type="reset" mat-stroked-button>Limpar</button>
+
+        </div>
+        </form>  
+        
+        
+          
+        
+        
+        
+      
+      
+

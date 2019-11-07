@@ -1,0 +1,13 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20px;
+}
+
+.item-card {
+  max-width: 300px;
+  margin: 10px;
+}

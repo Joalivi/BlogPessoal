@@ -1,0 +1,21 @@
+<div class="example-container">
+        <mat-form-field>
+          <input matInput placeholder="Nome">
+        </mat-form-field>
+        
+        <mat-form-field>
+            <input matInput placeholder="Enter your email" [formControl]="email" required>
+            <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+              
+        <mat-form-field>
+          <textarea matInput placeholder="Digite sua mensagem"></textarea>
+        </mat-form-field>
+        
+        <div class="example-button-row">
+          <button mat-stroked-button>Enviar</button>
+          <button mat-stroked-button>Limpar</button>
+        </div>
+        
+      </div>
+      

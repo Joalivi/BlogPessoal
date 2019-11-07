@@ -1,0 +1,19 @@
+.dialogCard {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .dialogTitle {
+    min-width: 100%;
+  }
+  
+  .dialogUsers {
+    min-width: 100%;
+  }
+  
+  .dialogBody {
+    min-width: 100%;
+  }
+  

@@ -1,0 +1,47 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+  }
+  
+  .item-card {
+    max-width: 80%;
+    min-width: 80%;
+  }
+  
+  .comment-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;
+  }
+  
+  mat-card {
+    margin-bottom: 25px;
+  }
+  
+  mat-card-actions {
+    margin-bottom: -1%;
+  }
+  
+  .btnActions {
+    position: absolute;
+    right: 1%;
+    bottom: 5%;
+  }
+  
+  .email {
+    min-width: 29%;
+    margin-right: 1%;
+  }
+  
+  .title {
+    min-width: 69%;
+  }
+  
+  .body {
+    min-width: 100%;
+  }
+  

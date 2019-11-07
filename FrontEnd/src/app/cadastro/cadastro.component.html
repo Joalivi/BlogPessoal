@@ -1,0 +1,33 @@
+<div>
+  <h3>Adicionar Novo Usuário</h3>
+</div>
+
+
+       <form class="example-container" [formGroup]="usuarioForm" (ngSubmit)="addUsuario(usuarioForm.value)">
+
+        <mat-form-field>
+          <input matInput name="name" placeholder="Nome" formControlName="name">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput name="username" placeholder="UserName" formControlName="username">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput placeholder="Enter your email" formControlName="email" required>
+         
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-select name="adm" placeholder="Selecione seu cargo" formControlName="adm">
+            <mat-option value="1">Administrador</mat-option>
+            <mat-option value="0">Comum</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <div class="example-button-row">
+          <button type="submit" [disabled]="!usuarioForm.valid" mat-button color="primary" >Adicionar</button>
+          <button type="reset" mat-stroked-button>Limpar</button>
+        </div>
+      </form>
+   
+      
