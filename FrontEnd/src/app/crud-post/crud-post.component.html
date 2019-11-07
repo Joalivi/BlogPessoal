@@ -1,23 +1,24 @@
-<h1 mat-dialog-title>Editar Post</h1>
-
-<mat-dialog-content [formGroup]="editForm">
-  <mat-form-field class="dialogTitle">
-    <input matInput name="title" placeholder="Título do Post" formControlName="title">
+<form class="example-container" [formGroup]="editForm" (ngSubmit)="editPost(editForm.value)">
+  <div>
+    <h3>Editar Post</h3>
+  </div>
+  <mat-form-field>
+    <input id="title" matInput name="title" placeholder="Nome do Post" formControlName="title">
   </mat-form-field>
-  <mat-form-field class="dialogUsers">
+  <mat-form-field class="users">
     <mat-select placeholder="Usuário" name="userId" formControlName="userId">
-      <mat-option *ngFor="let user of dataSource" [value]="user.id">
+      <mat-option *ngFor="let user of userSource" [value]="user.id">
         {{user.username}}
       </mat-option>
     </mat-select>
   </mat-form-field>
-  <mat-form-field class="dialogBody">
+  <mat-form-field class="body">
     <textarea cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="5" cdkAutosizeMaxRows="10"
-      matInput name="body" formControlName="body" placeholder="Conteúdo do Post"></textarea>
+      matInput name="body" placeholder="Conteúdo do Post" formControlName="body"></textarea>
   </mat-form-field>
-</mat-dialog-content>
 
-<mat-dialog-actions align="end">
-  <button mat-raised-button (click)="save()" color="primary">Salvar</button>
-</mat-dialog-actions>
-
+  <div class="example-button-row">
+    <button type="submit" mat-raised-button color="primary">Enviar</button>
+    <button type="reset" mat-stroked-button>Limpar</button>
+  </div>
+</form>

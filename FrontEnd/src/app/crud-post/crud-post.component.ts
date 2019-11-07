@@ -1,8 +1,9 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-import { Usuario } from '../../model/models';
+import { FormGroup, FormBuilder, Validators, NgForm } from '@angular/forms';
+import { Post, Usuario } from '../../model/models';
 import { ApiService } from '../../services/api.service';
+import { Observable } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-crud-post',
@@ -11,40 +12,48 @@ import { ApiService } from '../../services/api.service';
 })
 export class CrudPostComponent implements OnInit {
   editForm: FormGroup;
-  dataSource: Usuario[];
+  dataSource: Post;
+  userSource: Usuario[];
+  postId: number;
 
-  title: string;
-  body: string;
-  user_id: number;
-  post_id: number;
-
-  constructor(
-    private _api: ApiService,
-    private formBuilder: FormBuilder,
-    private dialogRef: MatDialogRef<CrudPostComponent>,
-    @Inject(MAT_DIALOG_DATA) data) {
-    this.title = data.title;
-    this.body = data.body;
-    this.user_id = data.id;
-    this.post_id = data.post_id;
-  }
+  constructor(private _api: ApiService, private formBuilder: FormBuilder, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
-    this._api.getUsuarios().subscribe(res => {
-      this.dataSource = res;
+    this.postId = this.route.snapshot.params['id'];
+    this._api.getAdmUsuarios().subscribe(res => {
+      this.userSource = res;
+      this.loadPost();
     }, err => {
       console.log(err);
     });
 
     this.editForm = this.formBuilder.group({
-      'title': [this.title, Validators.required],
-      'body': [this.body, Validators.required],
-      'userId': [this.user_id, Validators.required]
+      'title': [null, Validators.required],
+      'body': [null, Validators.required],
+      'userId': [null, Validators.required]
     });
-
   }
 
-  save() {
-    this.dialogRef.close(this.editForm.value);
+  loadPost() {
+    this._api.getPost(this.postId).subscribe(res => {
+      this.dataSource = res;
+      this.loadForm();
+    }, err => {
+      console.log(err);
+    });
+  }
+
+  loadForm() {
+    this.editForm.controls['title'].setValue(this.dataSource[0].title);
+    this.editForm.controls['body'].setValue(this.dataSource[0].body);
+    this.editForm.controls['userId'].setValue(this.dataSource[0].id);
+  }
+
+  editPost(form: NgForm) {
+    this._api.updatePost(this.postId, form).subscribe(res => {
+      this.router.navigate(['/principal']);
+    }, err => {
+      console.log(err);
+    });
   }
 }

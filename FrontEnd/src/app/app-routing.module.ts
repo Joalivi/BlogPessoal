@@ -7,6 +7,7 @@ import { SobreComponent } from './sobre/sobre.component';
 import { NovoPostComponent } from './novo-post/novo-post.component';
 import { ComentariosComponent } from './comentarios/comentarios.component';
 import { BuscaComponent } from './busca/busca.component';
+import { CrudPostComponent } from './crud-post/crud-post.component';
 
 const routes: Routes = [
 
@@ -18,6 +19,10 @@ const routes: Routes = [
   {
     path: 'novopost',
     component: NovoPostComponent
+  },
+  {
+    path: 'editar/:id',
+    component: CrudPostComponent
   },
   {
     path: 'cadastro',

@@ -1,19 +1,15 @@
-.dialogCard {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .dialogTitle {
-    min-width: 100%;
-  }
-  
-  .dialogUsers {
-    min-width: 100%;
-  }
-  
-  .dialogBody {
-    min-width: 100%;
-  }
-  
+.example-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.example-container > * {
+  width: 80%;
+}
+
+.example-button-row button,
+.example-button-row a {
+margin-right: 8px;
+}
