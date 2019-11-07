@@ -10,6 +10,7 @@
 
 .item-card {
   max-width: 300px;
+  min-width: 300px;
   margin: 1%;
 }
 
